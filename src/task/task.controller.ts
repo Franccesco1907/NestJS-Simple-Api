@@ -6,9 +6,6 @@ import {
   Param,
   Post,
   Put,
-  HttpException,
-  HttpStatus,
-  BadRequestException,
 } from '@nestjs/common';
 import { TaskDTO } from './dto/task.dto';
 import { TaskService } from './task.service';
@@ -18,12 +15,7 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
   @Post()
   create(@Body() taskDTO: TaskDTO) {
-    // throw new BadRequestException('Error en petición');
-    // throw new HttpException('Error en petición', HttpStatus.BAD_REQUEST);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => reject('Error en petición'), 15000);
-    });
-    // return this.taskService.create(taskDTO);
+    return this.taskService.create(taskDTO);
   }
 
   @Get()
